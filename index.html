@@ -1,173 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radu Cîrcei – DevOps / SRE</title>
+  <meta name="description" content="DevOps/SRE portfolio of Radu Cîrcei – automation, secure homelab (Tresor), AI chatbot at Steelcase, and systems engineering projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-        .contact-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+  <!-- kept Turnstile script unchanged from production -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #111318;
+      --muted: #c6c9d3;
+      --text: #e9ecf1;
+      --brand: #6ee7ff;
+      --brand-2: #a78bfa;
+      --accent: #22c55e;
+      --card: #0f1117;
+      --border: #212636;
+      --shadow: 0 10px 30px rgba(0,0,0,.3);
+      --radius: 16px;
+      --maxw: 1100px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fb;
+        --panel: #ffffff;
+        --muted: #556070;
+        --text: #0e1217;
+        --card: #ffffff;
+        --border: #e8ebf2;
+        --shadow: 0 12px 24px rgba(10,18,28,.06);
+      }
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(110,231,255,.15), transparent 60%),
+        radial-gradient(1000px 700px at -10% 10%, rgba(167,139,250,.12), transparent 55%),
+        var(--bg);
+    }
 
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    /* Layout */
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 18px; }
+    header.site {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(10px);
+      background: color-mix(in oklab, var(--bg) 75%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; gap: 10px; align-items: center; font-weight: 800; letter-spacing: .3px; }
+    .brand .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 0 16px rgba(110,231,255,.5);
+    }
+    .nav a { opacity: .85; font-weight: 600; margin-left: 18px; padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; }
+    .nav a:hover { border-color: var(--border); opacity: 1; }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+    /* Hero */
+    .hero { padding: 68px 0 36px; }
+    .hero .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--panel) 85%, transparent);
+      font-size: 12px; color: var(--muted);
+    }
+    .badge i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(34,197,94,.8); }
+    h1.title { font-size: clamp(28px, 5vw, 52px); line-height: 1.05; margin: 14px 0 10px; }
+    .subtitle { font-size: clamp(14px, 2.1vw, 18px); color: var(--muted); max-width: 62ch; }
 
-        #statusMessage {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 4px;
-            display: none;
-        }
+    .cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); font-weight: 700; }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0c10; border: none; box-shadow: var(--shadow); }
+    .btn.ghost { background: color-mix(in oklab, var(--panel) 90%, transparent); }
 
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
+    .hero-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--panel) 90%, transparent), color-mix(in oklab, var(--panel) 96%, transparent));
+      padding: 18px; box-shadow: var(--shadow);
+    }
+    .hero-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .hero-card li { display: flex; align-items: start; gap: 10px; color: var(--muted); }
+    .hero-card li svg { flex: 0 0 auto; }
 
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
+    /* Sections */
+    section { padding: 54px 0; }
+    .section-title { font-size: clamp(18px, 3vw, 26px); margin: 0 0 18px; }
 
-        .loader {
-            display: none;
-            margin: 10px 0;
-            text-align: center;
-        }
+    .grid-cards { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card { grid-column: span 4; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 6px 0 0; color: var(--muted); }
 
-    </style>
-    <!-- Add Turnstile script -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    /* Projects */
+    .project {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--card); padding: 18px; box-shadow: var(--shadow);
+    }
+    .project h3 { margin: 0 0 6px; }
+    .project p { margin: 6px 0 10px; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 12px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--border); color: var(--muted);
+      background: color-mix(in oklab, var(--panel) 90%, transparent);
+    }
+
+    /* Timeline */
+    .timeline { position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .t-item { position: relative; padding-left: 36px; margin: 16px 0; }
+    .t-item::before {
+      content: ""; position: absolute; left: 6px; top: 6px; width: 14px; height: 14px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--panel) 80%, transparent);
+    }
+    .t-title { margin: 0; font-weight: 700; }
+    .t-meta { color: var(--muted); font-size: 14px; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; }
+    .skill {
+      grid-column: span 3; padding: 10px 12px; border: 1px solid var(--border);
+      border-radius: 999px; background: color-mix(in oklab, var(--panel) 90%, transparent);
+      text-align: center; font-weight: 600; color: var(--muted);
+    }
+
+    /* Contact container */
+    .contact { border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); padding: 18px; box-shadow: var(--shadow); }
+    .contact p { color: var(--muted); }
+
+    footer { padding: 24px 0 60px; color: var(--muted); text-align: center; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero .grid, .project { grid-template-columns: 1fr; }
+      .card { grid-column: span 6; }
+    }
+    @media (max-width: 640px) {
+      .nav { gap: 10px; }
+      .nav a { margin-left: 10px; }
+      .grid-cards { gap: 12px; }
+      .card { grid-column: span 12; }
+      .skills .skill { grid-column: span 6; }
+    }
+
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Contact form styles, namespaced so logic stays intact */
+    #contact-form-slot .contact-form { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    #contact-form-slot .form-group { margin-bottom: 16px; }
+    #contact-form-slot label { display:block; margin: 0 0 6px; font-weight: 700; }
+    #contact-form-slot input, #contact-form-slot textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px;
+      background: color-mix(in oklab, var(--panel) 92%, transparent); color: var(--text);
+    }
+    #contact-form-slot button {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #0b0c10; padding: 12px 16px; border: none; border-radius: 12px; font-weight: 800; cursor: pointer;
+    }
+    #contact-form-slot button:hover { filter: brightness(0.95); }
+    #contact-form-slot #statusMessage { margin-top: 12px; padding: 10px 12px; border-radius: 10px; display: none; }
+    #contact-form-slot .success { background: rgba(34,197,94,.15); color: #22c55e; border: 1px solid rgba(34,197,94,.35); }
+    #contact-form-slot .error { background: rgba(248,113,113,.15); color: #ef4444; border: 1px solid rgba(248,113,113,.35); }
+    #contact-form-slot .loader { display: none; margin: 10px 0; text-align: center; color: var(--muted); }
+  </style>
 </head>
 <body>
-    <div class="contact-form">
-        <h2>Contact Us</h2>
-        <form id="contactForm" onsubmit="return handleSubmit(event)">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-
-            <!-- Add Turnstile widget -->
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAA9Vdk8BLGoPrSjx"></div>
-
-            <button type="submit">Send Message</button>
-        </form>
-        <div id="statusMessage"></div>
-        <div id="loader" class="loader">Sending...</div>
+  <header class="site">
+    <div class="wrap nav">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> Radu Cîrcei</div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <script>
-        async function handleSubmit(event) {
-            event.preventDefault();
-            
-            // Display loader while submitting
-            document.getElementById('loader').style.display = 'block';
-            document.getElementById('statusMessage').style.display = 'none';
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value,
-                turnstileToken: document.querySelector('[name="cf-turnstile-response"]').value // Add Turnstile token
-            };
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="grid">
+          <div>
+            <span class="badge"><i></i> Available for DevOps/SRE roles</span>
+            <h1 class="title">Automation-first <span style="background: linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color: transparent;">DevOps / SRE</span></h1>
+            <p class="subtitle">I design secure, reproducible systems with Ansible, Docker, and Cloudflare. At Steelcase, I lead an internal AI chatbot initiative. At home, I built <strong>Tresor</strong>, a modular homelab powering public and private services without exposed ports.</p>
+            <div class="cta">
+              <a class="btn primary" href="#projects">See projects</a>
+              <a class="btn ghost" href="#contact">Get in touch</a>
+            </div>
+          </div>
+          <aside class="hero-card reveal" aria-label="Highlights">
+            <ul>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Built a <strong>zero-exposure</strong> public stack: Traefik + Cloudflare Tunnel + Turnstile, rate-limiting, least privilege.
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <strong>Everything-as-Code</strong>: Ansible provisioning, Docker Compose, reproducible roles & playbooks.
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Led an <strong>AI Chatbot MVP</strong> for Service Desk using RAG; now the internal project lead.
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Strong systems foundation: C/DSA focus, Linux daily driver, security-minded by design.
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-            try {
-                // Sending data to the Cloudflare Worker endpoint
-                const response = await fetch('https://form-worker.raduhrr.workers.dev', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
+    <!-- WORK / HIGHLIGHTS -->
+    <section id="work" class="reveal">
+      <div class="wrap">
+        <h2 class="section-title">What I do</h2>
+        <div class="grid-cards">
+          <article class="card">
+            <h3>DevOps & Infra</h3>
+            <p>Ansible roles, Docker networking, reverse proxies, secrets, monitoring, and CI/CD that ship safely.</p>
+          </article>
+          <article class="card">
+            <h3>Security by Default</h3>
+            <p>Zero trust posture: Cloudflare Tunnel, no public ports, least privilege, auditing, and rate limiting.</p>
+          </article>
+          <article class="card">
+            <h3>AI Assistants</h3>
+            <p>RAG chatbots that augment support teams—measurable resolution time improvements.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-                // Hide loader
-                document.getElementById('loader').style.display = 'none';
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="wrap">
+        <h2 class="section-title">Selected projects</h2>
 
-                const statusElement = document.getElementById('statusMessage');
-                if (response.ok) {
-                    // If the request was successful
-                    statusElement.style.display = 'block';
-                    statusElement.textContent = 'Your message has been sent successfully!';
-                    statusElement.className = 'success';
-                } else {
-                    // If something went wrong with the request
-                    statusElement.style.display = 'block';
-                    statusElement.textContent = 'Oops! Something went wrong. Please try again later.';
-                    statusElement.className = 'error';
-                }
-            } catch (error) {
-                // If the request fails completely
-                console.error('Error:', error);
-                document.getElementById('loader').style.display = 'none';
-                const statusElement = document.getElementById('statusMessage');
-                statusElement.style.display = 'block';
-                statusElement.textContent = 'Oops! Something went wrong. Please try again later.';
-                statusElement.className = 'error';
-            }
+        <div class="project">
+          <div>
+            <h3>Tresor Homelab</h3>
+            <p>Modular, security-first self-hosted platform. Public apps via Cloudflare Tunnel + Traefik; internal services (Jellyfin, Portainer, Grafana) isolated on separate networks. Fully provisioned with Ansible.</p>
+            <div class="tags">
+              <span class="tag">Ansible</span><span class="tag">Docker</span><span class="tag">Traefik</span><span class="tag">Cloudflare Tunnel</span><span class="tag">UFW/Fail2Ban</span>
+            </div>
+          </div>
+          <div>
+            <ul class="hero-card" style="margin:0">
+              <li>Multiple Docker networks: <strong>public_net</strong>, <strong>internal_net</strong>, <strong>mc_net</strong>.</li>
+              <li>Turnstile protection, rate limiting, no exposed ports.</li>
+              <li>IaC: playbooks for services, users, firewall, monitoring.</li>
+            </ul>
+          </div>
+        </div>
 
-            // Reset form
-            event.target.reset();
+        <div class="project" style="margin-top:18px;">
+          <div>
+            <h3>Service Desk AI Chatbot (Lead)</h3>
+            <p>RAG-powered assistant piloted across teams at Steelcase; I built the MVP in 2 days, aligned with leadership, and now lead the rollout.</p>
+            <div class="tags">
+              <span class="tag">RAG</span><span class="tag">SharePoint</span><span class="tag">Copilot Studio</span><span class="tag">Automation</span>
+            </div>
+          </div>
+          <div>
+            <ul class="hero-card" style="margin:0">
+              <li>KB serialization (120+ articles) to structured sources.</li>
+              <li>Clear phased deployment plan and feedback loop.</li>
+              <li>Measurable time-to-resolution improvements.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section id="experience" class="reveal">
+      <div class="wrap">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="t-item">
+            <h3 class="t-title">Steelcase – Service Desk (Security/Automation-oriented)</h3>
+            <div class="t-meta">2023–Present · Cluj-Napoca (Remote/Hybrid)</div>
+            <p class="subtitle">Top performer; led cross-team process improvements (DL/SG automation, phishing flows, incident routing). Security onboarding lead for new hires.</p>
+          </div>
+          <div class="t-item">
+            <h3 class="t-title">Homelab Builder – Tresor</h3>
+            <div class="t-meta">2024–Present</div>
+            <p class="subtitle">Production-like lab: infrastructure as code, strict isolation, monitoring, and reproducibility; basis for my bachelor thesis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="wrap">
+        <h2 class="section-title">Skills & Tools</h2>
+        <div class="skills">
+          <div class="skill">Ansible</div>
+          <div class="skill">Docker</div>
+          <div class="skill">Traefik</div>
+          <div class="skill">Cloudflare</div>
+          <div class="skill">Linux</div>
+          <div class="skill">GitHub Actions</div>
+          <div class="skill">Monitoring</div>
+          <div class="skill">Networking</div>
+          <div class="skill">Python</div>
+          <div class="skill">C / DSA</div>
+          <div class="skill">Security</div>
+          <div class="skill">RAG / AI</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="wrap">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact">
+          <p>Modified this so that nothing changes infra-wise: same endpoint, same token, same IDs, same form logic.</p>
+
+          <div id="contact-form-slot">
+            <div class="contact-form">
+              <h3 style="margin-top:0">Contact Me</h3>
+              <form id="contactForm" onsubmit="return handleSubmit(event)">
+                <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone Number:</label>
+                  <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message:</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <!-- kept Turnstile widget and sitekey exactly as in production -->
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAA9Vdk8BLGoPrSjx"></div>
+
+                <button type="submit">Send Message</button>
+              </form>
+              <div id="statusMessage"></div>
+              <div id="loader" class="loader">Sending...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>© <span id="y"></span> Radu Cîrcei · Built with automation and coffee ☕</small>
+    </div>
+  </footer>
+
+  <!-- tiny helper for reveal + year; does not touch infra code -->
+  <script>
+    // set year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // scroll-reveal (no external deps)
+    (function() {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach(function(e){ e.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(function(e){ io.observe(e); });
+    })();
+  </script>
+
+  <!-- kept the original form handler exactly (endpoint, token usage, ids) -->
+  <script>
+    async function handleSubmit(event) {
+      event.preventDefault();
+
+      // Display loader while submitting
+      document.getElementById('loader').style.display = 'block';
+      document.getElementById('statusMessage').style.display = 'none';
+
+      // Get form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value,
+        turnstileToken: document.querySelector('[name="cf-turnstile-response"]').value // Add Turnstile token
+      };
+
+      try {
+        // Sending data to the Cloudflare Worker endpoint (unchanged)
+        const response = await fetch('https://form-worker.raduhrr.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        // Hide loader
+        document.getElementById('loader').style.display = 'none';
+
+        const statusElement = document.getElementById('statusMessage');
+        if (response.ok) {
+          statusElement.style.display = 'block';
+          statusElement.textContent = 'Your message has been sent successfully!';
+          statusElement.className = 'success';
+        } else {
+          statusElement.style.display = 'block';
+          statusElement.textContent = 'Oops! Something went wrong. Please try again later.';
+          statusElement.className = 'error';
         }
-    </script>
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('loader').style.display = 'none';
+        const statusElement = document.getElementById('statusMessage');
+        statusElement.style.display = 'block';
+        statusElement.textContent = 'Oops! Something went wrong. Please try again later.';
+        statusElement.className = 'error';
+      }
+
+      // Reset form
+      event.target.reset();
+    }
+  </script>
 </body>
 </html>
