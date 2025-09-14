@@ -3,8 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Radu Cîrcei – DevOps / SRE</title>
-  <meta name="description" content="DevOps/SRE portfolio of Radu Cîrcei – automation, secure homelab (Tresor), AI chatbot at Steelcase, and systems engineering projects." />
+  <title>Radu Cîrcei – DevOps / Sysadmin</title>
+  <meta name="description" content="DevOps/Sysadmin portfolio of Radu Cîrcei – automation, secure homelab (Tresor), AI chatbot at Steelcase, and systems engineering projects." />
+
+  <!-- Canonical + Social previews -->
+  <link rel="canonical" href="https://raduhhr.github.io/secure-contact-form/" />
+  <meta property="og:title" content="Radu Cîrcei – DevOps / Sysadmin" />
+  <meta property="og:description" content="Automation-first DevOps/Sysadmin. Homelab (Tresor), internal AI chatbot, secure-by-default infra." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://raduhhr.github.io/secure-contact-form/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Radu Cîrcei – DevOps / Sysadmin" />
+  <meta name="twitter:description" content="Automation-first DevOps/Sysadmin. Homelab (Tresor), internal AI chatbot, secure-by-default infra." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -62,7 +73,7 @@
       background: color-mix(in oklab, var(--bg) 75%, transparent);
       border-bottom: 1px solid var(--border);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 14px; }
     .brand { display: flex; gap: 10px; align-items: center; font-weight: 800; letter-spacing: .3px; }
     .brand .dot {
       width: 10px; height: 10px; border-radius: 50%;
@@ -71,6 +82,17 @@
     }
     .nav a { opacity: .85; font-weight: 600; margin-left: 18px; padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; }
     .nav a:hover { border-color: var(--border); opacity: 1; }
+
+    /* small social buttons in header */
+    .social { display: flex; gap: 10px; align-items: center; }
+    .icon-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--panel) 90%, transparent);
+      font-weight: 700; opacity: .9;
+    }
+    .icon-btn:hover { opacity: 1; }
+    .icon { width: 18px; height: 18px; display: inline-block; }
 
     /* Hero */
     .hero { padding: 68px 0 36px; }
@@ -189,6 +211,8 @@
   </style>
 </head>
 <body>
+  <a href="#main" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
   <header class="site">
     <div class="wrap nav">
       <div class="brand"><span class="dot" aria-hidden="true"></span> Radu Cîrcei</div>
@@ -198,40 +222,53 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="social">
+        <!-- header: only GitHub & LinkedIn -->
+        <a class="icon-btn" href="https://github.com/raduhhr" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.18-3.37-1.18-.46-1.18-1.13-1.5-1.13-1.5-.92-.64.07-.63.07-.63 1.02.07 1.55 1.05 1.55 1.05 .9 1.55 2.37 1.1 2.95.84.09-.66.35-1.1.63-1.35-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03A9.55 9.55 0 0 1 12 6.8c.85 0 1.7.11 2.49.33 1.9-1.3 2.74-1.03 2.74-1.03 .56 1.38.21 2.41.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.67.92.67 1.86v2.76c0 .26.18.57.69.47A10 10 0 0 0 12 2z"/></svg>
+          GitHub
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/radu-circei/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8.98h5V24H0zM8.5 8.98H13v2.05h.06c.63-1.2 2.18-2.47 4.49-2.47 4.8 0 5.68 3.16 5.68 7.27V24h-5v-6.61c0-1.58-.03-3.61-2.2-3.61-2.2 0-2.54 1.72-2.54 3.5V24h-5V8.98z"/></svg>
+          LinkedIn
+        </a>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- HERO -->
     <section class="hero">
       <div class="wrap">
         <div class="grid">
           <div>
-            <span class="badge"><i></i> Available for DevOps/SRE roles</span>
-            <h1 class="title">Automation-first <span style="background: linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color: transparent;">DevOps / SRE</span></h1>
-            <p class="subtitle">I design secure, reproducible systems with Ansible, Docker, and Cloudflare. At Steelcase, I lead an internal AI chatbot initiative. At home, I built <strong>Tresor</strong>, a modular homelab powering public and private services without exposed ports.</p>
+            <span class="badge"><i></i> Available for DevOps/Sysadmin/Infra roles</span>
+            <h1 class="title">Automation-first <span style="background: linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color: transparent;">DevOps / Sysadmin</span></h1>
+            <p class="subtitle">I design secure, reproducible systems with Ansible, Docker, and Cloudflare. At Steelcase, I help drive an internal AI chatbot initiative. At home, I designed and built <strong>Tresor</strong>, a modular homelab powering public and private services without exposed ports.</p>
             <div class="cta">
-              <a class="btn primary" href="#projects">See projects</a>
+              <a class="btn primary" href="https://raduhhr.github.io/secure-contact-form/cv%20baza.pdf" target="_blank" rel="noopener" download>Download CV</a>
               <a class="btn ghost" href="#contact">Get in touch</a>
+              <a class="btn" href="https://github.com/raduhhr" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/radu-circei/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
           </div>
           <aside class="hero-card reveal" aria-label="Highlights">
             <ul>
               <li>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Built a <strong>zero-exposure</strong> public stack: Traefik + Cloudflare Tunnel + Turnstile, rate-limiting, least privilege.
+                Go beyond tickets: fix root causes upstream, automate repetitive flows, and reduce toil.
               </li>
               <li>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <strong>Everything-as-Code</strong>: Ansible provisioning, Docker Compose, reproducible roles & playbooks.
+                Document everything: Joplin, reproducible playbooks, and audit-friendly changes.
               </li>
               <li>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Led an <strong>AI Chatbot MVP</strong> for Service Desk using RAG; now the internal project lead.
+                Learn fast: ramp up on new stacks quickly and deliver pragmatic improvements.
               </li>
               <li>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Strong systems foundation: C/DSA focus, Linux daily driver, security-minded by design.
+                Security-first without overkill: least privilege, no public ports, rate limiting, and sane defaults.
               </li>
             </ul>
           </aside>
@@ -254,7 +291,7 @@
           </article>
           <article class="card">
             <h3>AI Assistants</h3>
-            <p>RAG chatbots that augment support teams—measurable resolution time improvements.</p>
+            <p>RAG chatbots that augment support teams with verified, up-to-date knowledge.</p>
           </article>
         </div>
       </div>
@@ -268,33 +305,50 @@
         <div class="project">
           <div>
             <h3>Tresor Homelab</h3>
-            <p>Modular, security-first self-hosted platform. Public apps via Cloudflare Tunnel + Traefik; internal services (Jellyfin, Portainer, Grafana) isolated on separate networks. Fully provisioned with Ansible.</p>
+            <p>Designed a modular, security-first self-hosted platform. Public apps via Cloudflare Tunnel + Traefik; internal services (Jellyfin, Portainer, Grafana) isolated on separate networks. Ansible for reproducibility.</p>
             <div class="tags">
               <span class="tag">Ansible</span><span class="tag">Docker</span><span class="tag">Traefik</span><span class="tag">Cloudflare Tunnel</span><span class="tag">UFW/Fail2Ban</span>
             </div>
           </div>
           <div>
             <ul class="hero-card" style="margin:0">
-              <li>Multiple Docker networks: <strong>public_net</strong>, <strong>internal_net</strong>, <strong>mc_net</strong>.</li>
-              <li>Turnstile protection, rate limiting, no exposed ports.</li>
-              <li>IaC: playbooks for services, users, firewall, monitoring.</li>
+              <li>Dedicated Docker networks: <strong>public_net</strong>, <strong>internal_net</strong>, <strong>mc_net</strong>.</li>
+              <li>Turnstile protection, rate limiting, no exposed ports by default.</li>
+              <li>Everything-as-Code: users, firewall, services, and monitoring.</li>
             </ul>
           </div>
         </div>
 
         <div class="project" style="margin-top:18px;">
           <div>
-            <h3>Service Desk AI Chatbot (Lead)</h3>
-            <p>RAG-powered assistant piloted across teams at Steelcase; I built the MVP in 2 days, aligned with leadership, and now lead the rollout.</p>
+            <h3>Service Desk AI Chatbot</h3>
+            <p>RAG assistant to speed up resolutions and standardize answers. Helped align stakeholders and drive rollout; maintain content pipelines and feedback loops.</p>
             <div class="tags">
               <span class="tag">RAG</span><span class="tag">SharePoint</span><span class="tag">Copilot Studio</span><span class="tag">Automation</span>
             </div>
           </div>
           <div>
             <ul class="hero-card" style="margin:0">
-              <li>KB serialization (120+ articles) to structured sources.</li>
-              <li>Clear phased deployment plan and feedback loop.</li>
-              <li>Measurable time-to-resolution improvements.</li>
+              <li>Serialized 180+ KB articles into structured, indexable sources.</li>
+              <li>Phased deployment plan, org-wide access strategy, and QA guardrails.</li>
+              <li>Owns upkeep and measurement of impact on resolution times.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project" style="margin-top:18px;">
+          <div>
+            <h3>Spam Detection (ML)</h3>
+            <p>End-to-end KDD pipeline on classic spam datasets: cleaning, feature engineering, model training and evaluation (LR, RF, GB). Produced ROC curves, confusion matrices, and practical thresholds.</p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">ROC-AUC</span><span class="tag">KDD</span>
+            </div>
+          </div>
+          <div>
+            <ul class="hero-card" style="margin:0">
+              <li>Reproducible notebooks; clear metrics and error analysis.</li>
+              <li>Compared precision/recall trade-offs for support workflows.</li>
+              <li>Delivered concise report and diagrams for stakeholders.</li>
             </ul>
           </div>
         </div>
@@ -309,13 +363,34 @@
         <div class="timeline">
           <div class="t-item">
             <h3 class="t-title">Steelcase – Service Desk (Security/Automation-oriented)</h3>
-            <div class="t-meta">2023–Present · Cluj-Napoca (Remote/Hybrid)</div>
-            <p class="subtitle">Top performer; led cross-team process improvements (DL/SG automation, phishing flows, incident routing). Security onboarding lead for new hires.</p>
+            <div class="t-meta">Feb 2024–Present · Cluj-Napoca (Remote/Hybrid)</div>
+            <p class="subtitle">Top performer focused on upstream fixes, documentation, and automation across teams.</p>
+            <ul class="subtitle" style="margin:8px 0 0 0; padding-left:18px; list-style:disc;">
+              <li>Proposed and delivered multiple process improvements (phishing workflow, DL/SG automation, FIFO ticket assignment, alert management).</li>
+              <li>Handled security incidents: investigated phishing/spam, stopped a live intrusion attempt, altered the escalation flow, contributed to updated corporate security procedures. Delivered Security Onboarding sessions for all new hires in Cluj.</li>
+              <li>Proposed TechOps auto-incident handling to route/close noise signals.</li>
+              <li>Initiated and now lead an AI chatbot project (RAG-based assistant surfacing ServiceNow KB in Teams). Built MVP and documentation, now coordinating iterative development.</li>
+              <li>Daily exposure to enterprise infra: Active Directory, ServiceNow, Jira, Confluence, Azure DevOps Boards, Exchange admin, SCCM/Intune, Cisco ISE, Darktrace, Fortimail.</li>
+              <li>Participated in on-call rotation for critical incidents (monthly).</li>
+            </ul>
           </div>
+
           <div class="t-item">
             <h3 class="t-title">Homelab Builder – Tresor</h3>
             <div class="t-meta">2024–Present</div>
-            <p class="subtitle">Production-like lab: infrastructure as code, strict isolation, monitoring, and reproducibility; basis for my bachelor thesis.</p>
+            <p class="subtitle">Designed a Debian 12 homelab with Ansible, Docker, Traefik, Cloudflare Tunnel, focusing on reproducibility and security-first design.</p>
+          </div>
+
+          <div class="t-item">
+            <h3 class="t-title">Electronic Arts – QA</h3>
+            <div class="t-meta">Earlier role</div>
+            <p class="subtitle">Quality assurance on game builds; built testing discipline, issue triage, and clear reporting practices used later in infra work.</p>
+            <ul class="subtitle" style="margin:8px 0 0 0; padding-left:18px; list-style:disc;">
+              <li>Supported 3-month release cycles for seasonal game updates.</li>
+              <li>Performed regression, feature, black-box, A/B, and compliance testing.</li>
+              <li>Automated repetitive item setup with batch scripts, reducing prep time from hours to minutes.</li>
+              <li>Collaborated with distributed dev and compliance teams (Disney/EA/Bioware).</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -328,14 +403,14 @@
         <div class="skills">
           <div class="skill">Ansible</div>
           <div class="skill">Docker</div>
-          <div class="skill">Traefik</div>
+          <div class="skill">ITIL</div>
           <div class="skill">Cloudflare</div>
           <div class="skill">Linux</div>
           <div class="skill">GitHub Actions</div>
-          <div class="skill">Monitoring</div>
+          <div class="skill">Bash</div>
           <div class="skill">Networking</div>
           <div class="skill">Python</div>
-          <div class="skill">C / DSA</div>
+          <div class="skill">ServiceNow</div>
           <div class="skill">Security</div>
           <div class="skill">RAG / AI</div>
         </div>
@@ -365,7 +440,7 @@
 
                 <div class="form-group">
                   <label for="phone">Phone Number:</label>
-                  <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+                  <input type="tel" id="phone" name="phone" pattern="[\d\s+\-()]{7,}" placeholder="+40 712 345 678" required>
                 </div>
 
                 <div class="form-group">
@@ -389,6 +464,19 @@
 
   <footer>
     <div class="wrap">
+      <p style="margin-bottom:10px;">
+        <a class="icon-btn" href="https://raduhhr.github.io/secure-contact-form/cv%20baza.pdf" target="_blank" rel="noopener" download>
+          📄 Download CV
+        </a>
+        <a class="icon-btn" href="https://github.com/raduhhr" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.18-3.37-1.18-.46-1.18-1.13-1.5-1.13-1.5-.92-.64.07-.63.07-.63 1.02.07 1.55 1.05 1.55 1.05 .9 1.55 2.37 1.1 2.95.84.09-.66.35-1.1.63-1.35-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03A9.55 9.55 0 0 1 12 6.8c.85 0 1.7.11 2.49.33 1.9-1.3 2.74-1.03 2.74-1.03 .56 1.38.21 2.41.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.67.92.67 1.86v2.76c0 .26.18.57.69.47A10 10 0 0 0 12 2z"/></svg>
+          GitHub
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/radu-circei/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8.98h5V24H0zM8.5 8.98H13v2.05h.06c.63-1.2 2.18-2.47 4.49-2.47 4.8 0 5.68 3.16 5.68 7.27V24h-5v-6.61c0-1.58-.03-3.61-2.2-3.61-2.2 0-2.54 1.72-2.54 3.5V24h-5V8.98z"/></svg>
+          LinkedIn
+        </a>
+      </p>
       <small>© <span id="y"></span> Radu Cîrcei · Built with automation and coffee ☕</small>
     </div>
   </footer>
