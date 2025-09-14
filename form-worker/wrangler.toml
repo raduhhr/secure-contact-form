@@ -1,0 +1,6 @@
+name = "form-worker"
+main = "src/index.js"
+compatibility_date = "2025-02-04"
+
+[vars]
+AWS_REGION = "eu-north-1"
